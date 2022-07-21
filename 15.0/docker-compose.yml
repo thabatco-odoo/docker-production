@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  odoo150:
+    image: odoo150
+    container_name: odoo150
+    build:
+      context: .
+    network_mode: host
+    volumes:
+      - /opt/.local/share/Odoo/filestore150/:/opt/filestore
+      - odoo150:/opt/odoo
+#    only for production
+    restart: always
+  
+#    this restart policy should be used only after image is okay, otherwise it creates huge problem
+#    starting again and again not letting new changes refelect
+volumes:
+  odoo150:
